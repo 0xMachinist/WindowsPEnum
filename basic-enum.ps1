@@ -43,3 +43,10 @@ Get-Content .\file
 Remove-Item hi.txt, outme.txt, file
 "------------------ Checking Spaces in Paths ------------------"
 cmd.exe /c 'wmic service get name,pathname |  findstr /i /v "C:\Windows\\" | findstr /i /v """'
+
+
+"---------------- Checking Files in All Paths -----------------"
+Get-ChildItem -Path C:\ -Include ConsoleHost_history.txt,*.kdbx,SYSTEM,SAM -File -Recurse -Force 2>$null | Select-Object -ExpandProperty FullName
+"---------------- User Windows Path ---------------------------"
+$env:path
+
